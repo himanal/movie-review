@@ -1,7 +1,7 @@
 import FeedbackItem from "./FeedbackItem"
 
 const feedbackList = ({feedback ,handleDelete }) => {
-    console.log(feedback)    
+    
   if( !feedback || feedback.length===0){
       return <>
             <h1  className='text-red-900'> there is any data here</h1>
