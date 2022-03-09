@@ -4,7 +4,7 @@ import { useState } from "react";
 import Header from "./component/header";
 import Database from "./component/database/Database";
 import FeedbackList from "./component/FeedbackList";
-import FeedbacjStatus from "./component/FeedbacjStatus";
+import FeedbacjStatus from "./component/FeedbackStatus";
 
 function App() {
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FeedbacjStatus({feedback}) {
+function FeedbackStatus({feedback}) {
    const review = feedback.length
    const rating = feedback.reduce((acc, cur)=>{
         return acc + cur.rate
@@ -15,4 +15,4 @@ function FeedbacjStatus({feedback}) {
   )
 }
 
-export default FeedbacjStatus
+export default FeedbackStatus
