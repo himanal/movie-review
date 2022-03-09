@@ -4,7 +4,7 @@ function FeedbackStatus({feedback}) {
    const review = feedback.length
    const rating = feedback.reduce((acc, cur)=>{
         return acc + cur.rate
-   },0)
+   },0)/feedback.length
   
 
   return (
