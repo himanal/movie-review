@@ -1,10 +1,12 @@
 import { useState } from "react";
+import './App.css'
 
 // component
 import Header from "./component/header";
 import Database from "./component/database/Database";
 import FeedbackList from "./component/FeedbackList";
 import FeedbacjStatus from "./component/FeedbackStatus";
+import FeedbackForm from "./component/FeedbackForm";
 
 function App() {
 
@@ -21,6 +23,7 @@ function App() {
   return (
     <div className=" w-full  flex  h-full  flex-col items-center  justify-center  ">
       <Header />
+      <FeedbackForm/>
       <FeedbacjStatus feedback={feedback}/>
       <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
     </div>
