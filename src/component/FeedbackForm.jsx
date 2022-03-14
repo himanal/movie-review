@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import RatingSelect from './RatingSelect'
 import Card from './shard/card'
 
-function FeedbackForm() {
+function FeedbackForm({handleAdd}) {
     const [text, settext]= useState('')
     const [message, setMessage]= useState('')
+    const [rate, setRating]= useState('')
     const handleClick = (e)=>{
         if(text === ''){
             setMessage('')
@@ -17,17 +18,30 @@ function FeedbackForm() {
         settext(e.target.value)
         
     }
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+        if( text.length > 10){
+            const newFeedBackForm={
+                text,
+                rate
+            }
+            handleAdd(newFeedBackForm);
+            settext('')
+            setRating()
+        }
+
+    }
 
   return (
     <Card>
-        <form className='w-full flex justify-center items-center flex-col'>
+        <form onSubmit={handleSubmit} className='w-full flex justify-center items-center flex-col'>
             <h3 className='text-2xl text-gray-500 text-center '>
                 rate this movie!
             </h3>
-            <RatingSelect/>
+            <RatingSelect select={(e)=>setRating(e) } />
             {message &&<h2 className='text-red-800 text-xl' >{message}</h2>}
             <input type="text" onChange={handleClick}  className=' bg-slate-300 w-96 rounded-xl  pl-4 text-blue-500  hover:bg-slate-100' placeholder='wrrite your opinion!' />
-            <button className='bg-blue-500 w-20 mt-2 rounded-xl text-teal-400 '>send</button>
+            <button type='submit' className='bg-blue-500 w-20 mt-2 rounded-xl text-teal-400 '>send</button>
         </form>
     </Card>
   )

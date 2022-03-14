@@ -2,11 +2,11 @@ import React from 'react'
 
 function FeedbackStatus({feedback}) {
    const review = feedback.length
-   const rating = feedback.reduce((acc, cur)=>{
+   let rating = feedback.reduce((acc, cur)=>{
         return acc + cur.rate
    },0)/feedback.length
   
-
+  rating =parseFloat(rating).toFixed(1)
   return (
     <div className='flex justify-around w-full'>
         <h3 className='text-2xl'>{feedback.length === 1 ? "review" : "reviews"}:{review} </h3>    
