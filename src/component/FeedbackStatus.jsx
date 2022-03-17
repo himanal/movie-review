@@ -1,6 +1,8 @@
 import React from 'react'
-
-function FeedbackStatus({feedback}) {
+import { useContext } from 'react'
+import FeedbackContext from '../context/Feedbackcontext'
+function FeedbackStatus() {
+  const { feedback} = useContext(FeedbackContext)
    const review = feedback.length
    let rating = feedback.reduce((acc, cur)=>{
         return acc + cur.rate

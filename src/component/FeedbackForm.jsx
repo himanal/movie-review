@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import RatingSelect from './RatingSelect'
 import Card from './shard/card'
+import { useContext } from 'react'
+import FeedbackContext from '../context/Feedbackcontext'
 
 function FeedbackForm({handleAdd}) {
     const [text, settext]= useState('')
     const [message, setMessage]= useState('')
     const [rate, setRating]= useState('')
+
+    const {addNewFeedback } = useContext(FeedbackContext)
     const handleClick = (e)=>{
         if(text === ''){
             setMessage('')
@@ -20,12 +24,12 @@ function FeedbackForm({handleAdd}) {
     }
     const handleSubmit=(e)=>{
         e.preventDefault()
-        if( text.length > 10){
+        if( text.length > 10 && rate){
             const newFeedBackForm={
                 text,
                 rate
             }
-            handleAdd(newFeedBackForm);
+            addNewFeedback(newFeedBackForm);
             settext('')
             setRating()
         }
