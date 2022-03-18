@@ -3,12 +3,14 @@ import Database from "../component/database/Database";
 import { v4 as uuidv4 } from 'uuid';
 
 const FeedbackContext= createContext()
+
 export const FeedbackProvider=({children})=>{
     const [ feedback , setfeedback]= useState(Database)
     const [ EditFeedback, setEditFeedback]= useState({
         item:{},
         edit:false
     })
+  
 
       const deleteFeedback =(id)=>{
         if(window.confirm('are you sure')){
@@ -23,15 +25,24 @@ export const FeedbackProvider=({children})=>{
         setfeedback([e, ...feedback])
     
        }
+       const upDateFeedback =( id , upDate)=>{
+        setfeedback(
+          feedback.map((item)=>(
+          item.id=== id ? {...item , ...upDate} : item)
+        ))
+       }
    
        const EditText = (item)=>{
            setEditFeedback({
                item,
                edit:true
            })
+           
        }
+       
+       
 
-   return<FeedbackContext.Provider value={{feedback ,deleteFeedback ,addNewFeedback,EditText , EditFeedback}} >
+   return<FeedbackContext.Provider value={{feedback ,deleteFeedback ,addNewFeedback,EditText , EditFeedback , upDateFeedback}} >
         {children}
     </FeedbackContext.Provider>
 

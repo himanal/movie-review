@@ -9,7 +9,7 @@ function FeedbackForm({handleAdd}) {
     const [message, setMessage]= useState('')
     const [rate, setRating]= useState('')
 
-    const {addNewFeedback ,EditFeedback } = useContext(FeedbackContext)
+    const {addNewFeedback ,EditFeedback , upDateFeedback } = useContext(FeedbackContext)
 
     useEffect(()=>{
         if(EditFeedback.edit===true){
@@ -38,7 +38,12 @@ function FeedbackForm({handleAdd}) {
                 text,
                 rate
             }
-            addNewFeedback(newFeedBackForm);
+         if(EditFeedback.edit===true){
+            upDateFeedback( EditFeedback.item.id ,newFeedBackForm)
+         } else{
+
+             addNewFeedback(newFeedBackForm);
+            } 
             settext('')
             setRating()
         }
