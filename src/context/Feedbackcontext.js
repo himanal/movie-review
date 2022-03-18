@@ -5,6 +5,10 @@ import { v4 as uuidv4 } from 'uuid';
 const FeedbackContext= createContext()
 export const FeedbackProvider=({children})=>{
     const [ feedback , setfeedback]= useState(Database)
+    const [ EditFeedback, setEditFeedback]= useState({
+        item:{},
+        edit:false
+    })
 
       const deleteFeedback =(id)=>{
         if(window.confirm('are you sure')){
@@ -17,11 +21,17 @@ export const FeedbackProvider=({children})=>{
       const addNewFeedback =(e)=>{
         e.id=uuidv4()
         setfeedback([e, ...feedback])
-        console.log(e)
+    
        }
    
+       const EditText = (item)=>{
+           setEditFeedback({
+               item,
+               edit:true
+           })
+       }
 
-   return<FeedbackContext.Provider value={{feedback ,deleteFeedback ,addNewFeedback}} >
+   return<FeedbackContext.Provider value={{feedback ,deleteFeedback ,addNewFeedback,EditText , EditFeedback}} >
         {children}
     </FeedbackContext.Provider>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import RatingSelect from './RatingSelect'
 import Card from './shard/card'
 import { useContext } from 'react'
@@ -9,7 +9,16 @@ function FeedbackForm({handleAdd}) {
     const [message, setMessage]= useState('')
     const [rate, setRating]= useState('')
 
-    const {addNewFeedback } = useContext(FeedbackContext)
+    const {addNewFeedback ,EditFeedback } = useContext(FeedbackContext)
+
+    useEffect(()=>{
+        if(EditFeedback.edit===true){
+            
+            settext(EditFeedback.item.text)
+            setRating(EditFeedback.item.rate)
+        }
+    },[EditFeedback])
+
     const handleClick = (e)=>{
         if(text === ''){
             setMessage('')
@@ -44,7 +53,7 @@ function FeedbackForm({handleAdd}) {
             </h3>
             <RatingSelect select={(e)=>setRating(e) } />
             {message &&<h2 className='text-red-800 text-xl' >{message}</h2>}
-            <input type="text" onChange={handleClick}  className=' bg-slate-300 w-96 rounded-xl  pl-4 text-blue-500  hover:bg-slate-100' placeholder='wrrite your opinion!' />
+            <input type="text" onChange={handleClick}  className=' bg-slate-300 w-96 rounded-xl  pl-4 text-blue-500  hover:bg-slate-100'value={text} placeholder="Write your opinion!"/>
             <button type='submit' className='bg-blue-500 w-20 mt-2 rounded-xl text-teal-400 '>send</button>
         </form>
     </Card>

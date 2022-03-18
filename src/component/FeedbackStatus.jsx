@@ -11,8 +11,10 @@ function FeedbackStatus() {
   rating =parseFloat(rating).toFixed(1)
   return (
     <div className='flex justify-around w-full'>
-        <h3 className='text-2xl'>{feedback.length === 1 ? "review" : "reviews"}:{review} </h3>    
-        <h3 className='text-2xl'>rating: {isNaN(rating) ? 0 :  rating} </h3>    
+        <h3 className='text-2xl text-gray-600 '>
+         rating:  {isNaN(rating) ? 0 :  rating}
+           </h3>    
+        <h3 className='text-2xl text-gray-600'>{feedback.length === 1 ? "review" : "reviews"}:{review} </h3>    
     </div>
   )
 }
